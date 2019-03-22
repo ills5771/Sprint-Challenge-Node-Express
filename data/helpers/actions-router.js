@@ -28,5 +28,23 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ message: "The action could not be retrieved." });
   }
 });
+router.post("/", (req, res) => {
+  const action = req.body;
+  if (action.notes && action.description) {
+    Actions.insert(action)
+      .then(action => {
+        res.status(201).json(action);
+      })
+      .catch(error => {
+        res.status(500).json({
+          message: "There was an error saving the action to the database"
+        });
+      });
+  } else {
+    res.status(400).json({
+      message: "Please provide notes and description for the action."
+    });
+  }
+});
 
 module.exports = router;
