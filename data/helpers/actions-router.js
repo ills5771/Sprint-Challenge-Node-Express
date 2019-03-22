@@ -14,4 +14,19 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const action = await Actions.get(req.params.id);
+    if (action) {
+      res.status(200).json(action);
+    } else {
+      res
+        .status(404)
+        .json({ message: "The action with the specified ID does not exist." });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "The action could not be retrieved." });
+  }
+});
+
 module.exports = router;
