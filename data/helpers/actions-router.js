@@ -47,4 +47,29 @@ router.post("/", (req, res) => {
   }
 });
 
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+  if (changes.notes && changes.description) {
+    Actions.update(id, changes)
+
+      .then(updated => {
+        if (updated) {
+          res.status(200).json(updated);
+        } else {
+          res.status(404).json({
+            message: "The action with the specified ID does not exist."
+          });
+        }
+      })
+      .catch(error => {
+        res.status(500).json({ message: "The action could not be updated." });
+      });
+  } else {
+    res.status(400).json({
+      message: "Please provide notes and description for the action."
+    });
+  }
+});
+
 module.exports = router;
