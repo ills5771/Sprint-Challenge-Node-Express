@@ -73,4 +73,19 @@ router.put("/:id", (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const project = await Projects.remove(req.params.id);
+    if (project > 0) {
+      res.status(204).end();
+    } else {
+      res
+        .status(404)
+        .json({ message: "The project with the specified ID does not exist." });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "The project could not be removed" });
+  }
+});
+
 module.exports = router;
