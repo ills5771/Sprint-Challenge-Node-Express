@@ -28,6 +28,18 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ message: "The project could not be retrieved." });
   }
 });
+router.get("/:id/actions", async (req, res) => {
+  try {
+    const projectActions = await Projects.getProjectActions(req.params.id);
+
+    res.status(200).json(projectActions);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Error retrieving actions for this project"
+    });
+  }
+});
 
 router.post("/", (req, res) => {
   const project = req.body;
