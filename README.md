@@ -26,13 +26,29 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+      Middleware, Routing
+
 - [ ] Describe Middleware?
+
+      functions that perform specific tasks which could be built-in to a framework or
+      written custom by devs, these functions get executed in the order they are introduced.
+      Express is compatible with connect middleware, which has been around for a long time, as
+      well as having its own built-in middleware and third party modules like cors and helmet.
 
 - [ ] Describe a Resource?
 
+      TK tells us that everything is a resource when designing RESTful Apis. It is accessible
+      via a URI, and managed by HTTP methods
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+      the API can return a successful status code with a message or return a json object with
+      the information requested.
+
 - [ ] How can we partition our application into sub-applications?
+
+      I believe this is referring to using express routers, we can breakup our routing endpoints into different router files. For example, we have 2 routers in this project,
+      one for the project routes, the second for the actions
 
 ## Project Setup
 
